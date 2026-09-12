@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemant Singh — Full-Stack Developer</title>
+
+<!-- LinkedIn / social preview card. Replace the two URLs below once your GitHub Pages link is live. -->
+<meta property="og:title" content="Hemant Singh — Full-Stack Developer">
+<meta property="og:description" content="B.Tech CSE grad building full-stack apps with Spring Boot and Angular. Check out my Banking Management System project.">
+<meta property="og:image" content="https://hemantsingh2409.github.io/portfolio/og-image.png">
+<meta property="og:url" content="https://hemantsingh2409.github.io/portfolio/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1720;
+    --panel: #16212C;
+    --panel-alt: #1C2A38;
+    --border: #263341;
+    --text: #E9EEF3;
+    --text-dim: #8FA0AF;
+    --amber: #E8A33D;
+    --teal: #4FB286;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15, 23, 32, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+  .nav-name { font-size: 1.05rem; font-weight: 600; }
+  .nav-links { display: flex; gap: 24px; list-style: none; font-size: 0.9rem; color: var(--text-dim); }
+  .nav-links a { transition: color 0.15s ease; }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero { padding: 88px 0 76px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+  .hero-role { font-family: 'IBM Plex Mono', monospace; color: var(--teal); font-size: 0.9rem; margin-bottom: 18px; display: inline-block; }
+  .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.2rem); line-height: 1.1; margin-bottom: 20px; }
+  .hero p { color: var(--text-dim); font-size: 1.02rem; max-width: 48ch; margin-bottom: 30px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 6px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+  .btn-primary { background: var(--amber); color: #14100A; }
+  .btn-primary:hover { transform: translateY(-1px); background: #f0ad4c; }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+  .btn-sm { padding: 8px 16px; font-size: 0.82rem; }
+
+  .code-panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5); }
+  .code-panel-bar { display: flex; gap: 7px; padding: 13px 16px; border-bottom: 1px solid var(--border); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #33424F; }
+  .code-panel pre { padding: 22px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.85; overflow-x: auto; }
+  .c-key { color: #E8A33D; } .c-type { color: #4FB286; } .c-str { color: #9FCBA3; } .c-com { color: #5A6B78; } .c-txt { color: #C7D2DA; }
+
+  section { padding: 68px 0; border-top: 1px solid var(--border); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 38px; }
+  .sec-head h2 { font-size: 1.6rem; }
+  .sec-head .sec-num { font-family: 'IBM Plex Mono', monospace; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .about-grid p { color: var(--text-dim); margin-bottom: 16px; }
+  .stat-list { display: flex; flex-direction: column; gap: 16px; }
+  .stat { display: flex; justify-content: space-between; padding-bottom: 13px; border-bottom: 1px solid var(--border); font-size: 0.93rem; }
+  .stat span:first-child { color: var(--text-dim); }
+  .stat span:last-child { font-family: 'IBM Plex Mono', monospace; color: var(--teal); text-align: right; }
+
+  /* EXPERIENCE */
+  .exp-row { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-period { font-family: 'IBM Plex Mono', monospace; color: var(--teal); font-size: 0.85rem; padding-top: 3px; }
+  .exp-main h3 { font-size: 1.1rem; margin-bottom: 3px; }
+  .exp-org { color: var(--amber); font-size: 0.88rem; margin-bottom: 12px; font-family: 'IBM Plex Mono', monospace; }
+  .exp-main ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .exp-main li { padding-left: 18px; position: relative; color: var(--text-dim); font-size: 0.92rem; }
+  .exp-main li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); }
+  .exp-link { display: inline-block; margin-top: 10px; font-size: 0.85rem; color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+  .exp-link:hover { color: var(--amber); }
+
+  /* SKILLS */
+  .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .skill-group h3 { font-size: 0.83rem; color: var(--text-dim); font-weight: 500; font-family: 'Inter', sans-serif; margin-bottom: 13px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; padding: 6px 12px; border: 1px solid var(--border); border-radius: 5px; color: var(--text); background: var(--panel); }
+
+  /* PROJECTS */
+  .project-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 38px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 38px; margin-bottom: 24px; }
+  .project-card h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .project-tagline { color: var(--amber); font-size: 0.88rem; margin-bottom: 18px; font-family: 'IBM Plex Mono', monospace; }
+  .project-card p.desc { color: var(--text-dim); margin-bottom: 20px; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .feature-list li { padding-left: 20px; position: relative; color: var(--text-dim); font-size: 0.92rem; }
+  .feature-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  .project-links { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+
+  .project-card-sm { background: var(--panel-alt); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; }
+  .project-card-sm h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .project-card-sm p { color: var(--text-dim); font-size: 0.92rem; }
+
+  /* EDUCATION */
+  .edu-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid var(--border); gap: 24px; }
+  .edu-row:first-child { padding-top: 0; }
+  .edu-row:last-child { border-bottom: none; }
+  .edu-year { font-family: 'IBM Plex Mono', monospace; color: var(--teal); font-size: 0.86rem; white-space: nowrap; padding-top: 4px; }
+  .edu-main h3 { font-size: 1.08rem; margin-bottom: 4px; }
+  .edu-main p { color: var(--text-dim); font-size: 0.9rem; }
+
+  /* ACHIEVEMENTS / CERTS */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .plain-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .plain-list li { padding-left: 20px; position: relative; color: var(--text-dim); font-size: 0.94rem; }
+  .plain-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  .plain-list strong { color: var(--text); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 60px 0 40px; }
+  .contact-inner { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px; }
+  footer h2 { font-size: 1.9rem; max-width: 15ch; margin-bottom: 10px; }
+  footer p { color: var(--text-dim); }
+  .contact-links { display: flex; flex-direction: column; gap: 13px; }
+  .contact-links a { display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 0.93rem; color: var(--text); transition: color 0.15s ease; }
+  .contact-links a:hover { color: var(--amber); }
+  .contact-links svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .foot-bottom { margin-top: 50px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim); flex-wrap: wrap; gap: 10px; }
+
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; padding: 52px 0; }
+    .about-grid, .two-col { grid-template-columns: 1fr; }
+    .skill-groups { grid-template-columns: 1fr 1fr; }
+    .project-card { grid-template-columns: 1fr; padding: 26px; }
+    .exp-row { grid-template-columns: 1fr; gap: 8px; }
+    .nav-links { gap: 14px; font-size: 0.82rem; }
+    footer h2 { font-size: 1.5rem; }
+    .contact-inner { align-items: flex-start; }
+  }
+  @media (max-width: 520px) {
+    .skill-groups { grid-template-columns: 1fr; }
+    .wrap { padding: 0 20px; }
+  }
+
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="nav-name">Hemant Singh</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none; padding-top: 92px;">
+  <div class="wrap" style="display:contents;">
+    <div>
+      <span class="hero-role">Full-Stack Developer Trainee</span>
+      <h1>Hemant Singh builds secure, production-style apps end to end.</h1>
+      <p>B.Tech Computer Science graduate from Harcourt Butler Technical University, Kanpur, with hands-on experience across Spring Boot and Angular — and a year spent teaching Java and C to undergraduates before returning to build full-time.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="code-panel">
+      <div class="code-panel-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <pre><span class="c-key">public class</span> <span class="c-type">Developer</span> {
+
+  <span class="c-type">String</span> name = <span class="c-str">"Hemant Singh"</span>;
+  <span class="c-type">String</span> focus = <span class="c-str">"Full-Stack"</span>;
+  <span class="c-type">String</span> college = <span class="c-str">"HBTU Kanpur"</span>;
+
+  <span class="c-com">// backend + frontend</span>
+  <span class="c-type">String[]</span> stack = {
+    <span class="c-str">"Spring Boot"</span>, <span class="c-str">"Angular"</span>,
+    <span class="c-str">"MySQL"</span>, <span class="c-str">"JWT"</span>
+  };
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:20px;">
+        <span class="sec-num mono">about</span>
+        <h2>A bit about me</h2>
+      </div>
+      <p>I graduated in Computer Science from Harcourt Butler Technical University, Kanpur, with a CGPA of 8.74/10, and spent the months after teaching Java and C programming to undergraduates at GLA University, Mathura — covering OOPs, data structures, and problem-solving from the ground up.</p>
+      <p>That teaching stint sharpened something I already cared about: explaining and building things clearly, not just making them work. On the development side, I build full-stack applications with Spring Boot on the backend and Angular on the frontend, with a focus on clean architecture and secure, real-world features like authentication and transactional data handling.</p>
+      <p>I'm now looking to bring that into a project team as a full-stack developer.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><span>Focus</span><span>Full-Stack (Spring Boot + Angular)</span></div>
+      <div class="stat"><span>Education</span><span>B.Tech CSE, 8.74 CGPA</span></div>
+      <div class="stat"><span>Graduated</span><span>2025</span></div>
+      <div class="stat"><span>Recent role</span><span>Technical Trainer</span></div>
+      <div class="stat"><span>Problems solved</span><span>200+</span></div>
+      <div class="stat"><span>Open to</span><span>Full-time roles</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">experience</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">Aug 2025 — Mar 2026</div>
+      <div class="exp-main">
+        <h3>Technical Trainer</h3>
+        <div class="exp-org">GLA University, Mathura</div>
+        <ul>
+          <li>Taught Java and C programming to undergraduate students, covering core concepts including OOPs, data structures, and problem-solving techniques.</li>
+          <li>Designed and delivered structured lesson plans, hands-on coding exercises, and lab sessions to strengthen students' programming fundamentals.</li>
+          <li>Evaluated assignments and mentored students individually, improving their coding proficiency and interview readiness.</li>
+        </ul>
+        <a class="exp-link" href="https://drive.google.com/file/d/1ZoLnVQip2hWtEX5cVfmI9CndlXJb-stg/view?usp=sharing" target="_blank" rel="noopener">View appointment &amp; relieving letters</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">skills</span>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="tag-row">
+          <span class="tag">Core Java</span>
+          <span class="tag">Advanced Java</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Web technologies</h3>
+        <div class="tag-row">
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Angular</span>
+          <span class="tag">JDBC</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools & coursework</h3>
+        <div class="tag-row">
+          <span class="tag">Git & GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Postman</span>
+          <span class="tag">DBMS</span>
+          <span class="tag">OS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">projects</span>
+      <h2>Featured work</h2>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <h3>Banking Management System</h3>
+        <p class="project-tagline">Spring Boot · Angular · MySQL · JWT</p>
+        <p class="desc">A secure full-stack banking application with user authentication, account management, transactions, and loan processing — built with a Spring Boot backend and Angular frontend, and deployed live.</p>
+        <div class="project-links">
+          <a class="btn btn-primary btn-sm" href="https://banking-system-frontend-rho.vercel.app" target="_blank" rel="noopener">Live demo</a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/Hemantsingh2409/banking-system-backend" target="_blank" rel="noopener">Backend repo</a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/Hemantsingh2409/banking-system-frontend" target="_blank" rel="noopener">Frontend repo</a>
+        </div>
+      </div>
+      <div>
+        <ul class="feature-list">
+          <li>REST APIs built with Spring Boot and Spring Data JPA, following Controller-Service-Repository architecture</li>
+          <li>JWT authentication with Angular route guards and HTTP interceptors for protected access</li>
+          <li>Account creation, fund transfers with transactional integrity, deposits and withdrawals</li>
+          <li>EMI-based loan management built into the transaction flow</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card-sm">
+      <h3>DevDetective <span style="color:var(--text-dim); font-weight:400; font-size:0.85rem;">— GitHub API</span></h3>
+      <p>A GitHub User Status Checker that fetches and displays real-time GitHub profile information using the GitHub API.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">education</span>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2021 — 2025</div>
+      <div class="edu-main">
+        <h3>B.Tech, Computer Science</h3>
+        <p>Harcourt Butler Technical University, Kanpur · CGPA: 8.74/10</p>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2019 — 2020</div>
+      <div class="edu-main">
+        <h3>Intermediate (Class XII)</h3>
+        <p>Tulsi Vidya Niketan · Aggregate: 93.2%</p>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2017 — 2018</div>
+      <div class="edu-main">
+        <h3>High School (Class X)</h3>
+        <p>Tulsi Vidya Niketan · Aggregate: 92.8%</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap two-col">
+    <div>
+      <div class="sec-head" style="margin-bottom:24px;">
+        <span class="sec-num mono">achievements</span>
+        <h2>Achievements</h2>
+      </div>
+      <ul class="plain-list">
+        <li><strong>2nd Place, TCS AI Fridays</strong> (team) — developed an inventory forecast solution using LLMs and RAG.</li>
+        <li>Solved <strong>200+ problems</strong> across LeetCode, Coding Ninjas, and GeeksforGeeks.</li>
+        <li>Ranked among the <strong>Top 10</strong> in the Computer Science branch; School Topper in High School (2018).</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-bottom:24px;">
+        <span class="sec-num mono">certificates</span>
+        <h2>Certificates</h2>
+      </div>
+      <ul class="plain-list">
+        <li>"Research Management and Scientific Writing" — Research &amp; Development Cell, HBTU.</li>
+        <li>Volunteered at CHEM-TECHNOVA-2024.</li>
+        <li>Two-day workshop on the National IP Yatra.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div>
+        <h2>Let's talk about what you're building.</h2>
+        <p>Open to full-stack developer roles — reach out by email or connect on LinkedIn.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:dipu24092002@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 6l9 7 9-7"/></svg>
+          dipu24092002@gmail.com
+        </a>
+        <a href="tel:+919026361360">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 90263 61360
+        </a>
+        <a href="https://www.linkedin.com/in/hemant-singh-6759b3240/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          linkedin.com/in/hemant-singh
+        </a>
+        <a href="https://github.com/Hemantsingh2409" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.29 9.29 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .28.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          github.com/Hemantsingh2409
+        </a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Hemant Singh</span>
+      <span>Built by hand, one commit at a time.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
